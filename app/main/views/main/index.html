@@ -1,6 +1,31 @@
 <:Title>
-  Home
+  Typing Calculator
 
 <:Body>
-  <h1>Home</h1>
+  <h1>WPM Calculator</h1>
 
+  <h3>Sample Text</h3>
+  <p>{{sample_text}}</p>
+  <div class="progress">
+    <div class="progress-bar progress-bar-{{status}} progress-bar-striped"
+      role="progressbar"
+      aria-valuenow="{{net_wpm}}"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      style="width: {{net_wpm}}%">
+
+      <span class="sr-only">{{net_wpm}}%</span>
+    </div>
+  </div>
+  <form e-submit="complete" role="form">
+    <div class="form-group">
+      <label><h3>Begin Typing</h3></label>
+      <input class="form-control submit-field" type="text"
+             value="{{page._user_string}}">
+    </div>
+  </form>
+
+  <p>{{word_num}}</p>
+  <b>Number of words</b>
+  <p>{{accuracy}}</p>
+  <b>Accuracy</b>

@@ -8,6 +8,69 @@ class MainController < Volt::ModelController
     # Add code for when the about view is loaded
   end
 
+  def sample_text
+    "Balls balls balls"
+  end
+
+  def sample_array
+    sample_text.split
+  end
+
+  def user_array
+    page._user_string.split
+  end
+
+  def mistakes_array
+    popped_array = user_array
+    popped_array.pop
+    mistakes = popped_array - sample_array
+  end
+
+  def char_length(array)
+    array.join.length
+  end
+
+  def accuracy
+    correct_characters = char_length(user_array) - char_length(mistakes_array)
+    fraction = correct_characters/ char_length(user_array)
+
+    (fraction * 100).round(2)
+  end
+
+  def word_num
+    char_length(user_array) / 5
+  end
+
+  def time_elapsed
+    if page._user_string.length == 1
+      @start_time = Time.new
+    elsif page._user_string.length == 0
+      @start_time = 0
+    else
+      nil
+    end
+
+    (Time.now - @start_time).round / 60
+  end
+
+  def gross_wpm
+    (word_num/ time_elapsed).round
+  end
+
+  def net_wpm
+    errors_per_min = (mistakes_array.count / time_elapsed).round
+    gross_wpm - errors_per_min
+  end
+
+  def status
+    if net_wpm > 60
+      "success"
+    elsif net_wpm > 31
+      "warning"
+    else
+      "danger"
+    end
+  end
   private
 
   # The main template contains a #template binding that shows another

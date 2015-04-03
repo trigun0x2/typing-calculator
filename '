@@ -1,0 +1,16 @@
+<:Title>
+  Typing Calculator
+
+<:Body>
+  <h1>WPM Calculator</h1>
+
+  <h3>Sample Text</h3>
+  <p>{{sample_text}}</h3>
+  <p>{{user_array}}</p>
+  <form e-submit="complete" role="form">
+    <div class="form-group">
+      <label><h3>Begin Typing</h3></label>
+      <input class="form-control submit-field" type="text"
+             value="{{page._user_string}}">
+    </div>
+  </form>
